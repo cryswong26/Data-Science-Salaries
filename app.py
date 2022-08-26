@@ -22,7 +22,9 @@ githublink = 'https://github.com/cryswong26/Data-Science-Salaries'
 df = pd.read_csv('assets/ds_salaries.csv') #this one is one level up from the notebook
 #df['Female']=df['Sex'].map({'male':0, 'female':1})
 #df['Cabin Class'] = df['Pclass'].map({1:'first', 2: 'second', 3:'third'})
-variables_list=['experience_level', 'company_location', 'company_size', 'remote_ratio']
+variable=['experience_level', 'company_location', 'company_size', 'remote_ratio']
+column_to_aggregate = 'salary_in_usd'
+agg_method = 'mean'
 
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -35,8 +37,8 @@ app.layout = html.Div([
     html.H3('Choose a variable to see average Data Science salaries:'),
     dcc.Dropdown(
         id='dropdown',
-        options=[{'label': i, 'value': i} for i in variables_list],
-        value=variables_list[0]
+        options=[{'label': i, 'value': i} for i in variable],
+        value=variable[0]
     ),
     html.Br(),
     dcc.Graph(id='display-value'),
