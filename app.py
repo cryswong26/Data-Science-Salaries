@@ -19,9 +19,7 @@ githublink = 'https://github.com/cryswong26/Data-Science-Salaries'
 
 ###### Import a dataframe ####### - goal is to show the highest average salaries by different dimensions
 #df = pd.read_csv('../assets/ds_salaries.csv')
-df = pd.read_csv('assets/ds_salaries.csv') #this one is one level up from the notebook
-#df['Female']=df['Sex'].map({'male':0, 'female':1})
-#df['Cabin Class'] = df['Pclass'].map({1:'first', 2: 'second', 3:'third'})
+df = pd.read_csv('assets/ds_salaries.csv')
 variable=['experience_level', 'company_location', 'company_size', 'remote_ratio']
 column_to_aggregate = 'salary_in_usd'
 agg_method = 'mean'
@@ -51,14 +49,10 @@ app.layout = html.Div([
 ######### Interactive callbacks go here #########
 @app.callback(Output('display-value', 'figure'),
               [Input('dropdown', 'value')])
-#def display_value(continuous_var):
-    #mean_salary=df.groupby(['Cabin Class', 'Embarked'])[continuous_var].mean()
-    #mean_salary = df.groupby(continous_var)['salary_in_usd'].mean()
 def create_all_summary(df,variable,column_to_aggregate,agg_method): 
     df_output = df.groupby(variable)[column_to_aggregate].agg(agg_method)
     return df_output
-    #results=pd.DataFrame(df_output)
-    # Create a grouped bar chart
+
     mydata1 = go.Bar(
         x=df_output.index,
         y=df_output.values,
