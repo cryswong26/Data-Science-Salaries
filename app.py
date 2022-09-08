@@ -53,7 +53,7 @@ app.layout = html.Div([
                     ])
                 ]),
                 width=3
-            ),
+            )],
     dcc.Graph(id='display-value'),
     html.A('Code on Github', href=githublink),
     html.Br(),
