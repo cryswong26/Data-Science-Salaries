@@ -34,13 +34,26 @@ app.title=tabtitle
 
 ####### Layout of the app ########
 app.layout = html.Div([
-    html.H3('Choose a variable to see what types of roles are most likely to be fully remote and have a high salary:'),
+    html.H3('Choose a variable to see what types of Data Science roles are most likely to be fully remote and have a high salary:'),
     dcc.Dropdown(
         id='dropdown',
         options=[{'label': i, 'value': i} for i in variable],
         value=variable[0]
     ),
     html.Br(),
+    dbc.Row(
+        [
+            dbc.Col(
+                html.Div(children=[
+                    html.H4('Legend and Observations'),
+                    html.Ul(children=[
+                        html.Li("Experience Level: EN = Entry-level, MI = Mid-level, SE = Senior-level, EX = Executive-level"),
+                        html.Li("Medium-sized companies have the highest number of fully remote & high-paying roles"),
+                        html.Li("The number of fully remote & high-paying roles increases with seniority"),
+                    ])
+                ]),
+                width=3
+            ),
     dcc.Graph(id='display-value'),
     html.A('Code on Github', href=githublink),
     html.Br(),
@@ -51,12 +64,6 @@ app.layout = html.Div([
 ######### Interactive callbacks go here #########
 @app.callback(Output('display-value', 'figure'),
               [Input('dropdown', 'value')])
-#def create_all_summary(df,variable): 
-    #df_output = df.groupby(variable)['US_remote_high_salary'].sum()
-    #return df_output
-#def create_all_summary(df,variable,column_to_aggregate,agg_method): 
-    #df_output = df.groupby(variable)[column_to_aggregate].agg(agg_method)
-    #return df_output
 def display_value(continuous_var):
     df_output = df.groupby([continuous_var])['US_remote_high_salary'].sum()
     final_output = pd.DataFrame(df_output)    
