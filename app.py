@@ -27,6 +27,11 @@ df['US_remote_high_salary'] = (df['remote_high_salary'] == True) & (df['company_
 #isolated to just the US because most of the roles that fit the criteria for "remote_high_salary" were only in the US
 #defined "high salary" as anything greater than the mean salary of the data set
 
+df["experience_level"] = df["experience_level"].str.replace("EN","Entry-Level")
+df["experience_level"] = df["experience_level"].str.replace("MI","Mid-Level")
+df["experience_level"] = df["experience_level"].str.replace("SE","Senior-Level")
+df["experience_level"] = df["experience_level"].str.replace("EX","Executive-Level")
+
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
