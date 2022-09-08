@@ -63,13 +63,13 @@ def display_value(continuous_var):
     # Create a bar chart
     mydata1 = go.Bar(
         x=final_output.index,
-        y=final_output.values,
+        y=final_output.['US_remote_high_salary'],
         marker=dict(color=color1)
     )
    
     mylayout = go.Layout(
         title='Bar chart',
-        xaxis = dict(title = str(variable)), # x-axis label
+        xaxis = dict(title = continuous_var), # x-axis label
         yaxis = dict(title = '# of roles'), # y-axis label
 
     )
