@@ -51,30 +51,30 @@ app.layout = html.Div([
 ######### Interactive callbacks go here #########
 @app.callback(Output('display-value', 'figure'),
               [Input('dropdown', 'value')])
-def create_all_summary(df,variable): 
-    df_output = df.groupby(variable)['US_remote_high_salary'].sum()
-    return df_output
-
+#def create_all_summary(df,variable): 
+    #df_output = df.groupby(variable)['US_remote_high_salary'].sum()
+    #return df_output
 #def create_all_summary(df,variable,column_to_aggregate,agg_method): 
     #df_output = df.groupby(variable)[column_to_aggregate].agg(agg_method)
     #return df_output
-
+def display_value(continuous_var):
+    df_output = df.groupby([continuous_var])['US_remote_high_salary'].sum()
+    final_output = pd.DataFrame(df_output)    
+    # Create a bar chart
     mydata1 = go.Bar(
-        x=df_output.index,
-        y=df_output.values,
-        #name='First Class',
+        x=final_output.index,
+        y=final_output.values,
         marker=dict(color=color1)
     )
-
+   
     mylayout = go.Layout(
-        title='Bar Chart',
+        title='Bar chart',
         xaxis = dict(title = str(variable)), # x-axis label
-        yaxis = dict(title = '# of roles') # y-axis label
+        yaxis = dict(title = '# of roles'), # y-axis label
 
     )
     fig = go.Figure(data=[mydata1], layout=mylayout)
     return fig
-
 
 ######### Run the app #########
 if __name__ == '__main__':
