@@ -6,8 +6,6 @@ from dash.dependencies import Input, Output, State
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
-#import dash_bootstrap_components as dbc
-
 
 ###### Define your variables #####
 tabtitle = 'Data Science Salaries'
@@ -18,7 +16,7 @@ sourceurl = 'https://www.kaggle.com/datasets/ruchi798/data-science-job-salaries'
 githublink = 'https://github.com/cryswong26/Data-Science-Salaries'
 
 
-###### Import a dataframe ####### - focusing on what types of roles have the highest % of 100% remote work + a high salary
+###### Import a dataframe ####### - focusing on what types of roles have the highest number of 100% remote work + a high salary
 df = pd.read_csv('assets/ds_salaries.csv')
 variable=['experience_level', 'company_size']
 
@@ -47,19 +45,6 @@ app.layout = html.Div([
         value=variable[0]
     ),
     html.Br(),
-    #dbc.Row(
-    #    [
-    #       dbc.Col(
-     #           html.Div(children=[
-      #              html.H4('Legend and Observations'),
-       #             html.Ul(children=[
-        #                html.Li("Experience Level: EN = Entry-level, MI = Mid-level, SE = Senior-level, EX = Executive-level"),
-         #               html.Li("Medium-sized companies have the highest number of fully remote & high-paying roles"),
-          #              html.Li("The number of fully remote & high-paying roles increases with seniority"),
-           #         ])
-            #    ]),
-             #   width=3
-            #)]),
     dcc.Graph(id='display-value'),
     html.A('Code on Github', href=githublink),
     html.Br(),
