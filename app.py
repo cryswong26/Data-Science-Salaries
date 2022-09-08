@@ -42,19 +42,19 @@ app.layout = html.Div([
         value=variable[0]
     ),
     html.Br(),
-    dbc.Row(
-        [
-            dbc.Col(
-                html.Div(children=[
-                    html.H4('Legend and Observations'),
-                    html.Ul(children=[
-                        html.Li("Experience Level: EN = Entry-level, MI = Mid-level, SE = Senior-level, EX = Executive-level"),
-                        html.Li("Medium-sized companies have the highest number of fully remote & high-paying roles"),
-                        html.Li("The number of fully remote & high-paying roles increases with seniority"),
-                    ])
-                ]),
-                width=3
-            )]),
+    #dbc.Row(
+    #    [
+    #       dbc.Col(
+     #           html.Div(children=[
+      #              html.H4('Legend and Observations'),
+       #             html.Ul(children=[
+        #                html.Li("Experience Level: EN = Entry-level, MI = Mid-level, SE = Senior-level, EX = Executive-level"),
+         #               html.Li("Medium-sized companies have the highest number of fully remote & high-paying roles"),
+          #              html.Li("The number of fully remote & high-paying roles increases with seniority"),
+           #         ])
+            #    ]),
+             #   width=3
+            #)]),
     dcc.Graph(id='display-value'),
     html.A('Code on Github', href=githublink),
     html.Br(),
